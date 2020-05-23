@@ -1,5 +1,5 @@
 #sample run
-#.\SelfRegisterMachine-Template.ps1 -systemdbservername "{sql-mi}.8ff678fa9950.database.windows.net" -slotworkerservername "{sql-mi}.8ff678fa9950.database.windows.net" -dbusername "adminuser" -dbpassword "P@ssw0rd12345678910!"" -clustername "SFMC Service Cluster"
+#.\SelfRegisterMachine-Template.ps1 -systemdbservername "{sql-mi}.8ff678fa9950.database.windows.net" -slotworkerservername "{sql-mi}.8ff678fa9950.database.windows.net" -dbusername "adminuser" -dbpassword "" -clustername "SFMC Service Cluster"
 
 param ($systemdbservername,$slotworkerservername,$dbusername,$dbpassword, $clustername)
 $global:systemDbConnectionString = 'Server=tcp:'+$systemdbservername+',1433;Persist Security Info=False;User ID='+$dbusername+';Password='+$dbpassword+';Initial Catalog=SystemDB'
@@ -41,7 +41,7 @@ function Register-Slot-Machine {
   
     $sqlQuery="declare @machineid TINYINT = 0
                declare @Stamp timestamp 
-               Exec dbo.SSISaveServiceMachine  @machineid, 1, '$env:computername', 'Azure Slot VM', 1, 8097, 20, 1, 5, NULL, 0, 0, 0, 0, '$env:computername', 0, @Stamp"
+               Exec dbo.SaveServiceMachine  @machineid, 1, '$env:computername', 'Azure Slot VM', 1, 8097, 20, 1, 5, NULL, 0, 0, 0, 0, '$env:computername', 0, @Stamp"
 
     return Invoke-SQL-No-Count-Timeout $connectionString $sqlQuery 30
 }
