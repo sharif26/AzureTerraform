@@ -1,9 +1,7 @@
-#$global:systemDbConnectionString = 'Server=tcp:async-api-slot-test.9feb36e36d8c.database.windows.net,1433;Persist Security Info=False;User ID=async_api_test;Password=atxqQ4RXH^$$M7QW;Initial Catalog=SystemDB'
-#$global:slotDbConnectionString = 'Server=tcp:async-api-slot-test.9feb36e36d8c.database.windows.net,1433;Persist Security Info=False;User ID=async_api_test;Password=atxqQ4RXH^$$M7QW;Initial Catalog=SlotService'
-$global:systemDbConnectionString = 'Server=tcp:shared-db-tse.ca78f0df869a.database.windows.net,1433;Persist Security Info=False;User ID=adminuser;Password=HelloWorld123456;Initial Catalog=SystemDB'
-$global:slotDbConnectionString = 'Server=tcp:shared-db-tse.ca78f0df869a.database.windows.net,1433;Persist Security Info=False;User ID=adminuser;Password=HelloWorld123456;Initial Catalog=SlotService'
+$global:systemDbConnectionString = 'Server=tcp:{sql_mi}.9feb36e36d8c.database.windows.net,1433;Persist Security Info=False;User ID={user};Password={pass};Initial Catalog=DBName'
+$global:slotDbConnectionString = 'Server=tcp:{sql_mi}.9feb36e36d8c.database.windows.net,1433;Persist Security Info=False;User ID={user};Password={pass};Initial Catalog=DB2'
 
-New-EventLog -LogName "Application" -Source "Exacttarget Slot Init"
+New-EventLog -LogName "Application" -Source "Exact Init"
 
 function Invoke-SQL-No-Count-Timeout {
     param(
