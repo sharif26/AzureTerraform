@@ -36,22 +36,22 @@ function Register-Slot-Machine {
   
     $sqlQuery="declare @machineid TINYINT = 0
                declare @Stamp timestamp 
-               Exec dbo.SSISaveServiceMachine  @machineid, $clusterId, '$env:computername', 'Azure Slot VM', 1, 8097, 20, 1, 5, NULL, 0, 0, 0, 0, '$env:computername', 0, @Stamp"
+               Exec dbo.SaveService  @machineid, $clusterId, '$env:computername', 'Azure Slot VM', 1, 8097, 20, 1, 5, NULL, 0, 0, 0, 0, '$env:computername', 0, @Stamp"
 
     return Invoke-SQL-No-Count-Timeout $connectionString $sqlQuery 30
 }
 
-Write-EventLog -LogName "Application" -Source "Exacttarget Slot Init" -EventID 3001 -EntryType Information -Message "Registering machine with SystemDB" -Category 1 -RawData 10,20
+Write-EventLog -LogName "Application" -Source "Exact Init" -EventID 3001 -EntryType Information -Message "Registering machine with System" -Category 1 -RawData 10,20
 
 Register-Slot-Machine $global:systemDbConnectionString 1
 
-Write-EventLog -LogName "Application" -Source "Exacttarget Slot Init" -EventID 3001 -EntryType Information -Message "Registering machine with SlotDatabase" -Category 1 -RawData 10,20
+Write-EventLog -LogName "Application" -Source "Exact Init" -EventID 3001 -EntryType Information -Message "Registering machine with SlotDB" -Category 1 -RawData 10,20
 
 Register-Slot-Machine $global:slotDbConnectionString 1
 
 
-Set-Service "Exacttarget Slot Service" -StartupType "Automatic"
+Set-Service "Exact Service" -StartupType "Automatic"
 
 Write-EventLog -LogName "Application" -Source "Exacttarget Slot Init" -EventID 3001 -EntryType Information -Message "Starting ET Slot service" -Category 1 -RawData 10,20
 #start the service
-Start-Service "Exacttarget Slot Service"
+Start-Service "Exact Service"
