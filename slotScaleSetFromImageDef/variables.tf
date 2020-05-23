@@ -1,5 +1,5 @@
 variable "subscription_id" {
-  default = "8738fb6b-de4b-4fd8-8023-e17f7ef42b29"
+  default = ""
 }
 
 variable "resource_group_name" {
@@ -7,18 +7,15 @@ variable "resource_group_name" {
 }
 
 variable "network_subnet_id" {
-  #default = "/subscriptions/8738fb6b-de4b-4fd8-8023-e17f7ef42b29/resourceGroups/mc-api-gateway/providers/Microsoft.Network/virtualNetworks/mc-api-gateway-apigateway-vnet/subnets/NetworkSubnet"
-  default = "/subscriptions/8738fb6b-de4b-4fd8-8023-e17f7ef42b29/resourceGroups/shrfRG/providers/Microsoft.Network/virtualNetworks/shrfRG-gateway-vnet/subnets/GatewaySubnet2"
+  default = "/subscriptions/{subscription_id}/resourceGroups/shrfRG/providers/Microsoft.Network/virtualNetworks/shrfRG-gateway-vnet/subnets/GatewaySubnet2"
 }
 
 variable "network_security_group_id" {
-  #default = "/subscriptions/8738fb6b-de4b-4fd8-8023-e17f7ef42b29/resourcegroups/mc-api-gateway/providers/Microsoft.Network/networkSecurityGroups/TSE-Slotworker"
-  default = "/subscriptions/8738fb6b-de4b-4fd8-8023-e17f7ef42b29/resourceGroups/shrfRG/providers/Microsoft.Network/networkSecurityGroups/TSE-227-6ee-NSG"
+  default = "/subscriptions/{subscription_id}/resourceGroups/shrfRG/providers/Microsoft.Network/networkSecurityGroups/TSE-227-6ee-NSG"
 }
 
 variable "image_id" {
-  #default = "/subscriptions/8738fb6b-de4b-4fd8-8023-e17f7ef42b29/resourceGroups/mc-api-gateway/providers/Microsoft.Compute/images/TSESlotVMBaseImage"
-  default = "/subscriptions/8738fb6b-de4b-4fd8-8023-e17f7ef42b29/resourceGroups/shrfRG/providers/Microsoft.Compute/images/SlotVMBaseImageWest2"
+  default = "/subscriptions/{subscription_id}/resourceGroups/shrfRG/providers/Microsoft.Compute/images/VMBaseImageWest2"
 }
 
 variable "prefix_for_scaleset_resources" {
@@ -41,7 +38,7 @@ variable "admin_username" {
  }
 variable "admin_password" {
   type = string
-  default = "HelloWorld12"
+  default = ""
 }
 
 variable "db_username" {
@@ -50,15 +47,15 @@ variable "db_username" {
 
  variable "db_password" {
   type = string
-  default = "HelloWorld123456"
+  default = ""
 }
 
 variable "slotworkerdb_server" {
-  default = "shared-tse.10493540c67a.database.windows.net"
+  default = "{sql-mi}.10493540c67a.database.windows.net"
 }
 
 variable "systemdb_server" {
-  default = "shared-tse.10493540c67a.database.windows.net"
+  default = "{sql-mi}.10493540c67a.database.windows.net"
 }
 
 variable "slotworker_cluster_name" {
@@ -66,12 +63,8 @@ variable "slotworker_cluster_name" {
 }
 
 variable "self_register_script_url" {
-  #default = "https://mcapigatewaydsk.blob.core.windows.net/slot/SelfRegisterMachine-Template.ps1"
-  default = "https://mcapigateway.blob.core.windows.net/slot/SelfRegisterMachine-Template.ps1"
+  default = "https://{storage_container}.blob.core.windows.net/slot/SelfRegisterMachine-Template.ps1"
 }
-# variable "sas_token" {
-#   type = string
-# }
 
 variable "self_register_script_name" {
   default = ".\\SelfRegisterMachine-Template.ps1"
