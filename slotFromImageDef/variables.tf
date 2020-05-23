@@ -1,17 +1,17 @@
 variable "subscription_id" {
-  default = "6f35427a-d288-49bf-a330-83f34d5cdd3e"
+  default = ""
 }
 
 variable "resource_group_name" {
-  default = "maheshgautam-gateway"
+  default = "myRG"
 }
 
 variable "network_subnet_id" {
-  default = "/subscriptions/6f35427a-d288-49bf-a330-83f34d5cdd3e/resourceGroups/maheshgautam-gateway/providers/Microsoft.Network/virtualNetworks/maheshgautam-gateway-apigateway-vnet/subnets/NetworkSubnet"
+  default = "/subscriptions/{subscription_id}/resourceGroups/myRG/providers/Microsoft.Network/virtualNetworks/my-gateway-apigateway-vnet/subnets/NetworkSubnet"
 }
 
 variable "image_id" {
-  default = "/subscriptions/6f35427a-d288-49bf-a330-83f34d5cdd3e/resourceGroups/maheshgautam-gateway/providers/Microsoft.Compute/images/TSESlotVMBaseImage-1"
+  default = "/subscriptions/{subscription_id}/resourceGroups/myRG/providers/Microsoft.Compute/images/VMBaseImage"
 }
 
 variable "admin_username" {
